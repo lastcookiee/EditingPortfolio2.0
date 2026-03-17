@@ -11,16 +11,14 @@ interface Reel {
   id: number;
   title: string;
   category: string;
-  videoUrl: string;
+  youtubeUrl: string;
+  thumbnailUrl: string;
   description: string;
-  client: string;
-  thumbTime: number;
 }
 
 const categories = [
   "All",
-  "Motion Graphics",
-  "Ads",
+  "Short Form",
   "Long Form",
 ];
 
@@ -28,148 +26,65 @@ const reels: Reel[] = [
   {
     id: 1,
     title: "SHOWREEL 1",
-    category: "Long Form",
-    videoUrl: "/videos/showreel-01.mp4",
-    description: "Ankur Bhaiya Intro — Long form motion graphics & visual storytelling.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
+    category: "Short Form",
+    youtubeUrl: "https://youtube.com/shorts/ygNN_1fK3Rw",
+    thumbnailUrl: "https://img.youtube.com/vi/ygNN_1fK3Rw/hqdefault.jpg",
+    description: "Short-form edit",
   },
   {
     id: 2,
     title: "SHOWREEL 2",
-    category: "Ads",
-    videoUrl: "/videos/showreel-02.mp4",
-    description: "Data Science Ad — Motion graphics with dynamic typography & beat-synced transitions.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
+    category: "Short Form",
+    youtubeUrl: "https://youtube.com/shorts/DSW39SHDdXQ",
+    thumbnailUrl: "https://img.youtube.com/vi/DSW39SHDdXQ/hqdefault.jpg",
+    description: "Short-form edit",
   },
   {
     id: 3,
     title: "SHOWREEL 3",
-    category: "Ads",
-    videoUrl: "/videos/showreel-03.mp4",
-    description: "Data Science Ad — Motion graphics with cinematic color grading & visual effects.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
+    category: "Long Form",
+    youtubeUrl: "https://youtu.be/zG3hNL08Dro?si=CW2WR5wdxZQU8TGz",
+    thumbnailUrl: "https://img.youtube.com/vi/zG3hNL08Dro/hqdefault.jpg",
+    description: "Long-form edit",
   },
   {
     id: 4,
     title: "SHOWREEL 4",
-    category: "Ads",
-    videoUrl: "/videos/showreel-04.mp4",
-    description: "Data Science Ad — Motion graphics with energetic pacing & brand visuals.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
+    category: "Long Form",
+    youtubeUrl: "https://youtu.be/NQOAQP0mow0?si=DmEhwGOfs7QoPbZp",
+    thumbnailUrl: "https://img.youtube.com/vi/NQOAQP0mow0/hqdefault.jpg",
+    description: "Long-form edit",
   },
   {
     id: 5,
     title: "SHOWREEL 5",
-    category: "Motion Graphics",
-    videoUrl: "/videos/showreel-05.mp4",
-    description: "Kodr & Kodex Ad — Motion graphics with kinetic typography & creative transitions.",
-    client: "Sheryians Coding School",
-    thumbTime: 8,
+    category: "Short Form",
+    youtubeUrl: "https://youtube.com/shorts/3DeuaDxEnDw",
+    thumbnailUrl: "https://img.youtube.com/vi/3DeuaDxEnDw/hqdefault.jpg",
+    description: "Short-form edit",
   },
   {
     id: 6,
     title: "SHOWREEL 6",
-    category: "Motion Graphics",
-    videoUrl: "/videos/showreel-06.mp4",
-    description: "Kodr & Kodex Ad — Motion graphics with bold visuals & rhythm-driven editing.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
+    category: "Short Form",
+    youtubeUrl: "https://youtube.com/shorts/SdBbZ7I7JHs",
+    thumbnailUrl: "https://img.youtube.com/vi/SdBbZ7I7JHs/hqdefault.jpg",
+    description: "Short-form edit",
   },
   {
     id: 7,
     title: "SHOWREEL 7",
-    category: "Motion Graphics",
-    videoUrl: "/videos/showreel-07.mp4",
-    description: "Kodr & Kodex Ad — Motion graphics with glitch effects & seamless flow.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
-  },
-  {
-    id: 8,
-    title: "SHOWREEL 8",
-    category: "Motion Graphics",
-    videoUrl: "/videos/showreel-08.mp4",
-    description: "Kodr & Kodex Ad — Motion graphics with dynamic composition & sound design.",
-    client: "Sheryians Coding School",
-    thumbTime: 8,
-  },
-  {
-    id: 9,
-    title: "SHOWREEL 9",
-    category: "Motion Graphics",
-    videoUrl: "/videos/showreel-09.mp4",
-    description: "Kodr & Kodex Ad — Motion graphics with creative direction & visual storytelling.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
-  },
-  {
-    id: 10,
-    title: "SHOWREEL 10",
-    category: "Motion Graphics",
-    videoUrl: "/videos/showreel-10.mp4",
-    description: "Kodr & Kodex Ad — Motion graphics with beat sync & energetic transitions.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
-  },
-  {
-    id: 11,
-    title: "SHOWREEL 11",
-    category: "Long Form",
-    videoUrl: "/videos/showreel-11.mp4",
-    description: "NYC Degree Is Important — Long form edit with motion graphics & storytelling.",
-    client: "Sheryians Coding School",
-    thumbTime: 10,
-  },
-  {
-    id: 12,
-    title: "SHOWREEL 12",
-    category: "Ads",
-    videoUrl: "/videos/showreel-12.mp4",
-    description: "Hiring Ad — Motion graphics with bold typography & brand identity.",
-    client: "Sheryians Coding School",
-    thumbTime: 8,
-  },
-  {
-    id: 13,
-    title: "SHOWREEL 13",
-    category: "Ads",
-    videoUrl: "/videos/showreel-13.mp4",
-    description: "Javascript Ad — Motion graphics with dynamic text animation & visual effects.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
-  },
-  {
-    id: 14,
-    title: "SHOWREEL 14",
-    category: "Ads",
-    videoUrl: "/videos/showreel-14.mp4",
-    description: "Javascript Ad — Motion graphics with cinematic pacing & sound design.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
-  },
-  {
-    id: 15,
-    title: "SHOWREEL 15",
-    category: "Ads",
-    videoUrl: "/videos/showreel-15.mp4",
-    description: "SRC Ad — Motion graphics with creative transitions & brand visuals.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
-  },
-  {
-    id: 16,
-    title: "SHOWREEL 16",
-    category: "Ads",
-    videoUrl: "/videos/showreel-16.mp4",
-    description: "SRC Ad — Motion graphics with kinetic design & rhythm-driven editing.",
-    client: "Sheryians Coding School",
-    thumbTime: 2,
+    category: "Short Form",
+    youtubeUrl: "https://youtube.com/shorts/KSNCXITIBTk",
+    thumbnailUrl: "https://img.youtube.com/vi/KSNCXITIBTk/hqdefault.jpg",
+    description: "Short-form edit",
   },
 ];
+
+function getYouTubeVideoId(url: string): string {
+  const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:shorts\/|watch\?v=))([a-zA-Z0-9_-]{11})/);
+  return match?.[1] ?? "";
+}
 
 function VideoModal({
   reel,
@@ -178,60 +93,53 @@ function VideoModal({
   reel: Reel;
   onClose: () => void;
 }) {
+  const videoId = getYouTubeVideoId(reel.youtubeUrl);
+  const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[10000] flex items-center justify-center p-4 md:p-8"
+      className="fixed inset-0 z-10000 flex items-center justify-center p-4 md:p-8"
       onClick={onClose}
     >
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/90 modal-backdrop" />
 
-      {/* Content */}
       <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
+        initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 24 }}
         className="relative w-full max-w-5xl z-10"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 text-white/60 hover:text-white text-sm tracking-[0.2em] uppercase transition-colors"
+          className="absolute -top-12 right-0 text-white/70 hover:text-white text-sm tracking-[0.2em] uppercase transition-colors"
           data-cursor-hover
         >
-          Close ✕
+          Close x
         </button>
 
-        {/* Video */}
-        <div className="relative w-full bg-black border border-white/10 overflow-hidden">
-          <div className="absolute inset-0 scanlines pointer-events-none z-10 opacity-20" />
-          <video
-            src={reel.videoUrl}
-            className="w-full h-auto max-h-[75vh]"
-            controls
-            autoPlay
-            playsInline
+        <div className="relative w-full aspect-video bg-black border border-white/10 overflow-hidden">
+          <iframe
+            src={embedUrl}
+            title={reel.title}
+            className="w-full h-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
           />
         </div>
 
-        {/* Info */}
-        <div className="mt-6 flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-          <div>
-            <h3 className="text-2xl font-bold text-white tracking-tight">
-              {reel.title}
-            </h3>
-            <p className="text-[#00d4ff]/60 text-xs tracking-[0.2em] uppercase mt-1">
-              {reel.category} — {reel.client}
-            </p>
-          </div>
-          <p className="text-white/40 text-sm max-w-md leading-relaxed">
-            {reel.description}
-          </p>
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <h3 className="text-lg md:text-xl font-bold text-white tracking-wide">
+            {reel.title}
+          </h3>
+          <span className="text-xs tracking-[0.2em] uppercase text-[#00d4ff]/80">
+            {reel.category}
+          </span>
         </div>
       </motion.div>
     </motion.div>
@@ -239,24 +147,6 @@ function VideoModal({
 }
 
 function ReelCard({ reel, onClick }: { reel: Reel; onClick: () => void }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  // Start playing once the video element mounts and loads
-  useEffect(() => {
-    if (isHovered && videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  }, [isHovered]);
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
   return (
     <motion.div
       layout
@@ -265,68 +155,42 @@ function ReelCard({ reel, onClick }: { reel: Reel; onClick: () => void }) {
       exit={{ opacity: 0, y: 20, scale: 0.95 }}
       transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       onClick={onClick}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="group relative overflow-hidden cursor-pointer"
+      className="group relative overflow-hidden"
       data-cursor-hover
     >
       {/* Card */}
-      <div className="relative aspect-video bg-[#0a0a0a] overflow-hidden border border-white/5">
-        {/* Video only renders on hover — zero downloads until user interacts */}
-        {isHovered && (
-          <video
-            ref={videoRef}
-            src={reel.videoUrl}
-            className="absolute inset-0 w-full h-full object-cover"
-            muted
-            loop
-            playsInline
-            preload="auto"
-          />
-        )}
+      <button
+        type="button"
+        onClick={onClick}
+        className="block w-full text-left relative aspect-video bg-[#0a0a0a] overflow-hidden border border-white/5 cursor-pointer"
+      >
+        <img
+          src={reel.thumbnailUrl}
+          alt={`${reel.title} thumbnail`}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
 
-        {/* Static styled thumbnail — always visible, fades out on hover */}
-        <div className={`absolute inset-0 transition-opacity duration-300 z-[1] ${isHovered ? "opacity-0" : "opacity-100"}`}>
-          {/* Cinematic gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0d1117] via-[#111827] to-[#0a0a0a]" />
+        <div className="absolute inset-0 bg-black/35 group-hover:bg-black/20 transition-colors duration-300" />
 
-          {/* Subtle accent glow */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#00d4ff]/[0.03] to-transparent" />
-
-          {/* Reel number display */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-3">
-            {/* Play button */}
-            <div className="w-14 h-14 rounded-full border border-white/15 flex items-center justify-center group-hover:border-[#00d4ff]/50 transition-all duration-300 group-hover:scale-110">
-              <div className="w-0 h-0 border-l-[10px] border-l-white/60 border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent ml-1 group-hover:border-l-[#00d4ff]/80 transition-colors duration-300" />
-            </div>
-            {/* Reel number */}
-            <span className="text-[10px] tracking-[0.3em] uppercase text-white/20 font-mono">
-              #{String(reel.id).padStart(2, "0")}
-            </span>
-          </div>
-
-          {/* Corner accent lines */}
-          <div className="absolute top-3 left-3 w-4 h-4 border-l border-t border-[#00d4ff]/15" />
-          <div className="absolute bottom-3 right-3 w-4 h-4 border-r border-b border-[#00d4ff]/15" />
-        </div>
-
-        {/* Scanlines on hover */}
-        <div className="absolute inset-0 scanlines opacity-0 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none z-[2]" />
-
-        {/* Category badge */}
         <div className="absolute top-3 left-3 z-10">
-          <span className="text-[10px] tracking-[0.15em] uppercase bg-black/60 px-2 py-1 text-[#00d4ff]/80 border border-[#00d4ff]/20">
+          <span className="text-[10px] tracking-[0.15em] uppercase bg-black/70 px-2 py-1 text-[#00d4ff]/90 border border-[#00d4ff]/25">
             {reel.category}
           </span>
         </div>
-      </div>
+
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="w-14 h-14 rounded-full border border-white/30 bg-black/30 flex items-center justify-center group-hover:border-[#00d4ff]/70 transition-all duration-300 group-hover:scale-110">
+            <div className="w-0 h-0 border-l-10 border-l-white border-t-[7px] border-t-transparent border-b-[7px] border-b-transparent ml-1" />
+          </div>
+        </div>
+      </button>
 
       {/* Title */}
       <div className="mt-3 px-1">
         <h3 className="text-sm font-bold text-white/80 tracking-wide group-hover:text-white transition-colors duration-300 glitch-hover">
           {reel.title}
         </h3>
-        <p className="text-xs text-[#a855f7]/50 mt-0.5">{reel.client}</p>
         <p className="text-xs text-white/30 mt-1 line-clamp-1">
           {reel.description}
         </p>
@@ -402,7 +266,7 @@ export default function Showreels() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`filter-btn text-xs tracking-[0.1em] uppercase px-4 py-2 border transition-all duration-300 ${
+                className={`filter-btn text-xs tracking-widest uppercase px-4 py-2 border transition-all duration-300 ${
                   activeCategory === cat
                     ? "border-[#00d4ff] text-[#00d4ff] bg-[#00d4ff]/5"
                     : "border-white/10 text-white/40 hover:border-white/30 hover:text-white/70"
@@ -429,7 +293,6 @@ export default function Showreels() {
         </motion.div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selectedReel && (
           <VideoModal
