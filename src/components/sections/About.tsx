@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,10 +17,46 @@ const floatingWords = [
 ];
 
 const stats = [
-  { number: "5+", label: "Years of Experience" },
+  { number: "3+", label: "Years of Experience" },
   { number: "150+", label: "Videos Edited" },
   { number: "50+", label: "Happy Clients" },
 ];
+
+function AnimatedStatNumber({ value }: { value: string }) {
+  const numberRef = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(numberRef, { once: false, amount: 0.7 });
+  const [displayValue, setDisplayValue] = useState(0);
+  const currentValueRef = useRef(0);
+
+  const targetValue = Number.parseInt(value.replace(/\D/g, ""), 10) || 0;
+  const suffix = value.replace(/[0-9]/g, "");
+
+  useEffect(() => {
+    const counter = { value: currentValueRef.current };
+
+    const tween = gsap.to(counter, {
+      value: isInView ? targetValue : 0,
+      duration: 1.2,
+      ease: "power3.out",
+      onUpdate: () => {
+        const nextValue = Math.round(counter.value);
+        currentValueRef.current = nextValue;
+        setDisplayValue(nextValue);
+      },
+    });
+
+    return () => {
+      tween.kill();
+    };
+  }, [isInView, targetValue]);
+
+  return (
+    <span ref={numberRef}>
+      {displayValue}
+      {suffix}
+    </span>
+  );
+}
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -139,7 +175,7 @@ export default function About() {
 
               <div className="overflow-hidden">
                 <p className="about-text-line text-lg md:text-xl text-white/60 leading-relaxed">
-                  With <span className="text-white font-semibold">5+ years</span> behind the
+                  With <span className="text-white font-semibold">3+ years</span> behind the
                   timeline and <span className="text-white font-semibold">150+ projects</span>{" "}
                   delivered, I specialize in{" "}
                   <span className="text-[#a855f7]">beat-synced edits</span>,{" "}
@@ -176,7 +212,7 @@ export default function About() {
                   className="stat-item group flex items-baseline gap-6 border-b border-white/5 pb-6"
                 >
                   <span className="text-5xl md:text-7xl font-black bg-gradient-to-r from-[#00d4ff] to-[#a855f7] bg-clip-text text-transparent">
-                    {stat.number}
+                    <AnimatedStatNumber value={stat.number} />
                   </span>
                   <span className="text-white/40 text-sm md:text-base tracking-[0.1em] uppercase">
                     {stat.label}
