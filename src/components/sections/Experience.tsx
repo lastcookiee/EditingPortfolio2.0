@@ -104,14 +104,14 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="experience"
-      className="relative py-32 px-6 md:px-12 lg:px-24"
+      className="relative py-20 md:py-24 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <p className="experience-title text-xs tracking-[0.4em] text-[#a855f7]/50 font-mono uppercase mb-4">
           // EXPERIENCE
         </p>
-        <h2 className="experience-title text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-20">
+        <h2 className="experience-title text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-12 md:mb-14">
           THE JOURNEY<span className="text-[#a855f7]">.</span>
         </h2>
 

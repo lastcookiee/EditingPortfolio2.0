@@ -124,7 +124,9 @@ export default function Contact({ onOpenContact }: { onOpenContact: () => void }
           </motion.button>
 
           <motion.a
-            href="mailto:kunalsingh.prf@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=kunalsingh.prf@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-10 py-4 border border-white/20 text-white/70 hover:text-white text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:border-white/40 inline-block"

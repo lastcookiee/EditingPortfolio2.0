@@ -14,39 +14,54 @@ interface Project {
   description: string;
   tags: string[];
   videoUrl: string;
+  thumbnailUrl: string;
   color: string;
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: "Typography Reel Series",
+    title: "Motion Graphic Reel 1",
     subtitle: "Kinetic Type Collection",
     description:
       "A series of typography-driven reels showcasing the power of words in motion. Each reel explores different typographic styles, from aggressive cuts to smooth transitions. Beat-synced text animations that feel alive.",
     tags: ["Typography", "After Effects", "Beat Sync"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/ygNN_1fK3Rw",
+    thumbnailUrl: "https://img.youtube.com/vi/ygNN_1fK3Rw/hqdefault.jpg",
     color: "#00d4ff",
   },
   {
     id: 2,
-    title: "WHAT IS BEHIND THE DOOR",
-    subtitle: "Cinematic Short",
+    title: "Motion Graphic Reel 2",
+    subtitle: "Motion graphics edit",
     description:
       "A cinematic storytelling piece that keeps the viewer guessing. Atmospheric editing with deep color grading, tension-building cuts, and a narrative structure designed to captivate from start to finish.",
     tags: ["Cinematic", "Storytelling", "Color Grading"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/DSW39SHDdXQ",
+    thumbnailUrl: "https://img.youtube.com/vi/DSW39SHDdXQ/hqdefault.jpg",
     color: "#a855f7",
   },
   {
     id: 3,
-    title: "LAN Fest Aftermovie",
+    title: "Motion Graphic Reel 3",
     subtitle: "Event Highlight Reel",
     description:
       "High-energy aftermovie capturing the essence of competitive gaming. Fast-paced cuts, crowd reactions, and epic gaming moments woven together with precision timing and professional sound design.",
     tags: ["Gaming", "Premiere Pro", "Transitions"],
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    videoUrl: "https://www.youtube.com/embed/zG3hNL08Dro",
+    thumbnailUrl: "https://img.youtube.com/vi/zG3hNL08Dro/hqdefault.jpg",
     color: "#ff3366",
+  },
+  {
+    id: 4,
+    title: "Gen AI Video",
+    subtitle: "AI Visual Story Edit",
+    description:
+      "A Gen AI-driven visual edit blending prompt-crafted scenes, cinematic pacing, and intentional transitions. Designed to feel futuristic while still keeping emotional storytelling at the center.",
+    tags: ["Gen AI", "Visual Storytelling", "Motion Design"],
+    videoUrl: "https://www.youtube.com/embed/NQOAQP0mow0",
+    thumbnailUrl: "https://img.youtube.com/vi/NQOAQP0mow0/hqdefault.jpg",
+    color: "#22c55e",
   },
 ];
 
@@ -129,6 +144,11 @@ function ProjectModal({
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const orderedProjects = [...projects].sort((a, b) => {
+    if (a.id === 4) return -1;
+    if (b.id === 4) return 1;
+    return 0;
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -145,8 +165,7 @@ export default function Projects() {
       });
 
       gsap.from(".project-card", {
-        y: 80,
-        opacity: 0,
+        y: 40,
         stagger: 0.2,
         duration: 1,
         ease: "power3.out",
@@ -165,30 +184,39 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative py-32 px-6 md:px-12 lg:px-24"
+      className="relative pt-14 pb-12 md:pt-16 md:pb-14 px-6 md:px-12 lg:px-24"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <p className="projects-title text-xs tracking-[0.4em] text-[#00d4ff]/50 font-mono uppercase mb-4">
           // PROJECTS
         </p>
-        <h2 className="projects-title text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-16">
+        <h2 className="projects-title text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-8 md:mb-10">
           FEATURED WORK<span className="text-[#00d4ff]">.</span>
         </h2>
 
         {/* Projects Grid */}
-        <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+        <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {orderedProjects.map((project) => (
             <motion.div
               key={project.id}
               onClick={() => setSelectedProject(project)}
               whileHover={{ y: -8 }}
-              className="project-card group relative overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-white/10 transition-all duration-500 cursor-pointer"
+              className={`project-card group relative overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-white/10 transition-all duration-500 cursor-pointer ${
+                project.id === 4 ? "md:col-span-2 lg:col-span-3 w-full max-w-4xl mx-auto" : ""
+              }`}
               data-cursor-hover
             >
               {/* Thumbnail area */}
-              <div className="relative aspect-video overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#111] to-[#0a0a0a]" />
+              <div className={`relative overflow-hidden ${project.id === 4 ? "aspect-2/1" : "aspect-video"}`}>
+                <img
+                  src={project.thumbnailUrl}
+                  alt={`${project.title} thumbnail`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
+
+                <div className="absolute inset-0 bg-black/35" />
 
                 {/* Color accent */}
                 <div
