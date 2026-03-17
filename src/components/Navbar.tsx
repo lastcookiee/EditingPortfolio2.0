@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Navbar({ onOpenContact }: { onOpenContact: () => void }) {
+export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function Navbar({ onOpenContact }: { onOpenContact: () => void })
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        onClick={onOpenContact}
+        onClick={() => scrollTo("contact")}
         className="text-xs tracking-[0.15em] uppercase px-5 py-2.5 border border-white/20 text-white hover:bg-white hover:text-black transition-all duration-300"
         data-cursor-hover
       >

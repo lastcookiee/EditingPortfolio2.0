@@ -44,7 +44,7 @@ export default function Home() {
       {/* Smooth Scroll Wrapper */}
       <SmoothScroll>
         {/* Navigation */}
-        <Navbar onOpenContact={openContact} />
+        <Navbar />
 
         {/* Main Content */}
         <main className="relative">
