@@ -16,6 +16,12 @@ const skills = [
     color: "#EA77FF",
   },
   {
+    name: "Adobe Photoshop",
+    description: "Compositing, retouching, design assets",
+    icon: "Ps",
+    color: "#31A8FF",
+  },
+  {
     name: "Beat Sync",
     description: "Rhythm-driven editing & timing",
     icon: "♪",
@@ -156,7 +162,7 @@ export default function Skills() {
 
             {/* Bottom accent line */}
             <div
-              className="absolute bottom-0 left-0 w-0 h-[2px] group-hover:w-full transition-all duration-700"
+              className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-700"
               style={{ background: `linear-gradient(90deg, ${skill.color}, transparent)` }}
             />
           </motion.div>

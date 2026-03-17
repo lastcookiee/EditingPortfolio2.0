@@ -154,7 +154,8 @@ export default function About() {
                   <span className="text-white font-bold">9MM Esports</span>, every frame I
                   touch is designed to make an impact. My tools of choice:{" "}
                   <span className="text-[#00d4ff]">After Effects</span> &{" "}
-                  <span className="text-[#a855f7]">Premiere Pro</span>.
+                  <span className="text-[#a855f7]">Premiere Pro</span> with{" "}
+                  <span className="text-[#31A8FF]">Adobe Photoshop</span>.
                 </p>
               </div>
 
@@ -189,11 +190,11 @@ export default function About() {
               <p className="text-xs tracking-[0.3em] text-white/20 uppercase mb-4">
                 Primary Tools
               </p>
-              <div className="flex gap-4">
-                {["After Effects", "Premiere Pro"].map((tool) => (
+              <div className="flex flex-wrap gap-4">
+                {["After Effects", "Premiere Pro", "Adobe Photoshop"].map((tool) => (
                   <span
                     key={tool}
-                    className="text-xs tracking-[0.1em] uppercase px-4 py-2 border border-white/10 text-white/50 hover:border-[#00d4ff]/30 hover:text-[#00d4ff]/70 transition-all duration-300"
+                    className="text-xs tracking-widest uppercase px-4 py-2 border border-white/10 text-white/50 hover:border-[#00d4ff]/30 hover:text-[#00d4ff]/70 transition-all duration-300"
                   >
                     {tool}
                   </span>

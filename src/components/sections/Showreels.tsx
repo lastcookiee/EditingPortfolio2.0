@@ -225,10 +225,9 @@ export default function Showreels() {
       });
 
       gsap.from(".filter-btn", {
-        y: 20,
-        opacity: 0,
+        y: 12,
         stagger: 0.08,
-        duration: 0.6,
+        duration: 0.45,
         ease: "power3.out",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -261,7 +260,7 @@ export default function Showreels() {
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-2 mt-6 md:mt-0">
+          <div className="relative z-20 flex flex-wrap gap-2 mt-6 md:mt-0">
             {categories.map((cat) => (
               <button
                 key={cat}
