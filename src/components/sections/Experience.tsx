@@ -14,7 +14,7 @@ const experiences = [
     location: "Bhopal, Madhya Pradesh, India · On-site",
     description:
       "Working as a Visual Media Designer, contributing to video editing and motion design for educational and promotional content. Editing short-form and long-form videos for social media platforms. Creating motion graphics, transitions, and visual effects to enhance storytelling.",
-    highlights: ["Video Editing & Motion Design", "Social Media Content", "Motion Graphics & VFX"],
+    highlights: ["Video Editing & Motion Design", "Social Media Content", "Motion Graphics & VFX", "Adobe Photoshop"],
     current: true,
   },
   {
