@@ -12,6 +12,7 @@ import ContactModal from "@/components/ContactModal";
 // Dynamic imports for code splitting
 const Hero = dynamic(() => import("@/components/sections/Hero"), { ssr: false });
 const Showreels = dynamic(() => import("@/components/sections/Showreels"), { ssr: false });
+const Pricing = dynamic(() => import("@/components/sections/Pricing"), { ssr: false });
 const FeaturedReel = dynamic(() => import("@/components/sections/FeaturedReel"), { ssr: false });
 const About = dynamic(() => import("@/components/sections/About"), { ssr: false });
 const Skills = dynamic(() => import("@/components/sections/Skills"), { ssr: false });
@@ -57,40 +58,49 @@ export default function Home() {
           {/* 2. Showreel System */}
           <Showreels />
 
-          {/* 3. Featured Hero Video */}
+          {/* Divider */}
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+          {/* 3. Pricing Section */}
+          <Pricing />
+
+          {/* Divider */}
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+
+          {/* 4. Featured Hero Video */}
           <FeaturedReel />
 
           {/* Divider */}
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
-          {/* 4. About Section */}
+          {/* 5. About Section */}
           <About />
 
           {/* Divider */}
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#00d4ff]/5 to-transparent" />
 
-          {/* 5. Skills Section */}
+          {/* 6. Skills Section */}
           <Skills />
 
-          {/* 6. Editing Philosophy */}
+          {/* 7. Editing Philosophy */}
           <Philosophy />
 
           {/* Divider */}
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#a855f7]/5 to-transparent" />
 
-          {/* 7. Projects Section */}
+          {/* 8. Projects Section */}
           <Projects />
 
           {/* Divider */}
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
-          {/* 8. Experience Timeline */}
+          {/* 9. Experience Timeline */}
           <Experience />
 
           {/* Divider */}
           <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#00d4ff]/5 to-transparent" />
 
-          {/* 9. Contact / CTA */}
+          {/* 10. Contact / CTA */}
           <Contact onOpenContact={openContact} />
         </main>
       </SmoothScroll>
