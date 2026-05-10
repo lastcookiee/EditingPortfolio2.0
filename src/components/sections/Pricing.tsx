@@ -136,16 +136,16 @@ export default function Pricing() {
     <section
       ref={sectionRef}
       id="pricing"
-      className="relative py-32 px-6 md:px-12 lg:px-24 overflow-hidden bg-black"
+      className="relative py-32 px-6 md:px-12 lg:px-24 bg-black"
     >
       {/* Background Grid */}
-      <div className="absolute inset-0 grid grid-cols-12 gap-px opacity-5 pointer-events-none">
+      <div className="absolute inset-0 grid grid-cols-12 gap-px opacity-5 pointer-events-none z-0">
         {Array.from({ length: 144 }).map((_, i) => (
           <div key={i} className="border border-white/10" />
         ))}
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto z-10">
         {/* Header */}
         <div className="mb-20">
           <motion.h2
