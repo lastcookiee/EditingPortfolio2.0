@@ -110,7 +110,7 @@ export default function Pricing() {
           trigger: sectionRef.current,
           start: "top 80%",
           end: "top 50%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       });
 
@@ -124,7 +124,7 @@ export default function Pricing() {
           trigger: sectionRef.current,
           start: "top 75%",
           end: "top 40%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none",
         },
       });
     }, sectionRef);
