@@ -250,23 +250,27 @@ export default function Pricing() {
                   </div>
 
                   {/* CTA Button */}
-                  <motion.a
+                  <a
                     href="mailto:kunalsingh.prf@gmail.com"
-                    className="block w-full mt-8 py-3 px-6 font-semibold rounded-lg border transition-all duration-300 text-sm tracking-wider uppercase text-center"
+                    className="block w-full mt-8 py-3 px-6 font-semibold rounded-lg border transition-all duration-300 text-sm tracking-wider uppercase text-center hover:scale-105 active:scale-95"
                     style={{
                       borderColor: tier.color,
                       color: tier.color,
                     }}
-                    whileHover={{
-                      backgroundColor: tier.color,
-                      color: "#000",
-                      boxShadow: `0 0 30px ${tier.color}80`,
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = tier.color;
+                      e.currentTarget.style.color = "#000";
+                      e.currentTarget.style.boxShadow = `0 0 30px ${tier.color}80`;
                     }}
-                    whileTap={{ scale: 0.95 }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                      e.currentTarget.style.color = tier.color;
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
                     data-cursor-hover
                   >
                     Get Started
-                  </motion.a>
+                  </a>
                 </div>
               </motion.div>
             ))}
@@ -405,9 +409,7 @@ export default function Pricing() {
           </p>
           <motion.a
             href="mailto:kunalsingh.prf@gmail.com"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-black font-bold rounded-lg uppercase tracking-wider text-sm"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="inline-block px-8 py-4 bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-black font-bold rounded-lg uppercase tracking-wider text-sm cursor-pointer hover:shadow-lg transition-all"
             data-cursor-hover
           >
             Get in Touch
