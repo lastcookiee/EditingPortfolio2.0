@@ -203,7 +203,7 @@ export default function Pricing() {
                 )}
 
                 <div
-                  className={`relative h-full bg-black/40 backdrop-blur border rounded-xl p-8 transition-all duration-300 ${
+                  className={`relative h-full bg-black/40 backdrop-blur border rounded-xl p-8 transition-all duration-300 flex flex-col ${
                     tier.popular
                       ? "border-[#a855f7]/50"
                       : "border-white/10 group-hover:border-white/20"
@@ -237,7 +237,7 @@ export default function Pricing() {
                   </div>
 
                   {/* Features */}
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex-grow">
                     {tier.features.map((feature, fIndex) => (
                       <div key={fIndex} className="flex items-start gap-3">
                         <div
@@ -250,8 +250,9 @@ export default function Pricing() {
                   </div>
 
                   {/* CTA Button */}
-                  <motion.button
-                    className="w-full mt-8 py-3 px-6 font-semibold rounded-lg border transition-all duration-300 text-sm tracking-wider uppercase"
+                  <motion.a
+                    href="mailto:kunalsingh.prf@gmail.com"
+                    className="block w-full mt-8 py-3 px-6 font-semibold rounded-lg border transition-all duration-300 text-sm tracking-wider uppercase text-center"
                     style={{
                       borderColor: tier.color,
                       color: tier.color,
@@ -265,7 +266,7 @@ export default function Pricing() {
                     data-cursor-hover
                   >
                     Get Started
-                  </motion.button>
+                  </motion.a>
                 </div>
               </motion.div>
             ))}
@@ -402,14 +403,15 @@ export default function Pricing() {
             Want to discuss your project? Let&apos;s talk about how we can bring
             your vision to life.
           </p>
-          <motion.button
-            className="px-8 py-4 bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-black font-bold rounded-lg uppercase tracking-wider text-sm"
+          <motion.a
+            href="mailto:kunalsingh.prf@gmail.com"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-black font-bold rounded-lg uppercase tracking-wider text-sm"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             data-cursor-hover
           >
             Get in Touch
-          </motion.button>
+          </motion.a>
         </motion.div>
       </div>
     </section>
