@@ -251,7 +251,9 @@ export default function Pricing() {
 
                   {/* CTA Button */}
                   <a
-                    href="mailto:kunalsingh.prf@gmail.com"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=kunalsingh.prf@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="block w-full mt-8 py-3 px-6 font-semibold rounded-lg border transition-all duration-300 text-sm tracking-wider uppercase text-center hover:scale-105 active:scale-95"
                     style={{
                       borderColor: tier.color,
@@ -408,8 +410,12 @@ export default function Pricing() {
             your vision to life.
           </p>
           <motion.a
-            href="mailto:kunalsingh.prf@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=kunalsingh.prf@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block px-8 py-4 bg-gradient-to-r from-[#00d4ff] to-[#a855f7] text-black font-bold rounded-lg uppercase tracking-wider text-sm cursor-pointer hover:shadow-lg transition-all"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             data-cursor-hover
           >
             Get in Touch
