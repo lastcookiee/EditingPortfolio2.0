@@ -25,6 +25,38 @@ const categories = [
 const reels: Reel[] = [
   {
     id: 1,
+    title: "LONG FORM 1",
+    category: "Long Form",
+    youtubeUrl: "https://youtu.be/9sHejZ1D5R4",
+    thumbnailUrl: "https://img.youtube.com/vi/9sHejZ1D5R4/hqdefault.jpg",
+    description: "Long-form edit",
+  },
+  {
+    id: 2,
+    title: "LONG FORM 2",
+    category: "Long Form",
+    youtubeUrl: "https://youtu.be/hcWsJwwwSs0",
+    thumbnailUrl: "https://img.youtube.com/vi/hcWsJwwwSs0/hqdefault.jpg",
+    description: "Long-form edit",
+  },
+  {
+    id: 3,
+    title: "SHORT FORM 1",
+    category: "Short Form",
+    youtubeUrl: "https://youtube.com/shorts/FM7Y3rWfEnc",
+    thumbnailUrl: "https://img.youtube.com/vi/FM7Y3rWfEnc/hqdefault.jpg",
+    description: "Short-form edit",
+  },
+  {
+    id: 4,
+    title: "SHORT FORM 2",
+    category: "Short Form",
+    youtubeUrl: "https://youtube.com/shorts/BZ5kedDutf4",
+    thumbnailUrl: "https://img.youtube.com/vi/BZ5kedDutf4/hqdefault.jpg",
+    description: "Short-form edit",
+  },
+  {
+    id: 5,
     title: "NEW REEL 1",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/04RCkhqe_hs",
@@ -32,7 +64,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 2,
+    id: 6,
     title: "NEW REEL 2",
     category: "Short Form",
     youtubeUrl: "https://www.youtube.com/shorts/xfZWI-taTrg",
@@ -40,7 +72,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 3,
+    id: 7,
     title: "NEW REEL 3",
     category: "Short Form",
     youtubeUrl: "https://www.youtube.com/shorts/50MgJmqrlYA",
@@ -48,7 +80,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 4,
+    id: 8,
     title: "NEW REEL 4",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/WK2CGDyyIoA",
@@ -56,7 +88,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 5,
+    id: 9,
     title: "NEW REEL 5",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/zaKy6u7joSw",
@@ -64,7 +96,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 6,
+    id: 10,
     title: "NEW REEL 6",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/a3CngW4ZOzY",
@@ -72,7 +104,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 7,
+    id: 11,
     title: "NEW REEL 7",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/elIRzktSAuY",
@@ -80,7 +112,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 8,
+    id: 12,
     title: "NEW REEL 8",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/9mhl_Q0Z7D0",
@@ -88,7 +120,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 9,
+    id: 13,
     title: "NEW REEL 9",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/9mhl_Q0Z7D0",
@@ -96,7 +128,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 10,
+    id: 14,
     title: "SHOWREEL 1",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/ygNN_1fK3Rw",
@@ -104,7 +136,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 11,
+    id: 15,
     title: "SHOWREEL 2",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/DSW39SHDdXQ",
@@ -112,7 +144,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 12,
+    id: 16,
     title: "SHOWREEL 3",
     category: "Long Form",
     youtubeUrl: "https://youtu.be/zG3hNL08Dro?si=CW2WR5wdxZQU8TGz",
@@ -120,7 +152,7 @@ const reels: Reel[] = [
     description: "Long-form edit",
   },
   {
-    id: 13,
+    id: 17,
     title: "SHOWREEL 4",
     category: "Long Form",
     youtubeUrl: "https://youtu.be/NQOAQP0mow0?si=DmEhwGOfs7QoPbZp",
@@ -128,7 +160,7 @@ const reels: Reel[] = [
     description: "Long-form edit",
   },
   {
-    id: 14,
+    id: 18,
     title: "SHOWREEL 5",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/3DeuaDxEnDw",
@@ -136,7 +168,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 15,
+    id: 19,
     title: "SHOWREEL 6",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/SdBbZ7I7JHs",
@@ -144,7 +176,7 @@ const reels: Reel[] = [
     description: "Short-form edit",
   },
   {
-    id: 16,
+    id: 20,
     title: "SHOWREEL 7",
     category: "Short Form",
     youtubeUrl: "https://youtube.com/shorts/KSNCXITIBTk",
