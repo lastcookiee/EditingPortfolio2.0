@@ -1,242 +1,178 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useInView } from "framer-motion";
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import Counter from "@/components/Counter";
+import Shape from "@/components/Shape";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const floatingWords = [
-  { text: "Typography", x: "10%", y: "20%", delay: 0 },
-  { text: "Rhythm", x: "75%", y: "15%", delay: 0.5 },
-  { text: "Impact", x: "85%", y: "70%", delay: 1 },
-  { text: "Precision", x: "5%", y: "75%", delay: 1.5 },
-  { text: "Cinematic", x: "60%", y: "85%", delay: 0.8 },
-  { text: "Flow", x: "40%", y: "10%", delay: 1.2 },
-];
-
-const stats = [
-  { number: "3+", label: "Years of Experience" },
-  { number: "150+", label: "Videos Edited" },
-  { number: "50+", label: "Happy Clients" },
-];
-
-function AnimatedStatNumber({ value }: { value: string }) {
-  const numberRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(numberRef, { once: false, amount: 0.7 });
-  const [displayValue, setDisplayValue] = useState(0);
-  const currentValueRef = useRef(0);
-
-  const targetValue = Number.parseInt(value.replace(/\D/g, ""), 10) || 0;
-  const suffix = value.replace(/[0-9]/g, "");
-
-  useEffect(() => {
-    const counter = { value: currentValueRef.current };
-
-    const tween = gsap.to(counter, {
-      value: isInView ? targetValue : 0,
-      duration: 1.2,
-      ease: "power3.out",
-      onUpdate: () => {
-        const nextValue = Math.round(counter.value);
-        currentValueRef.current = nextValue;
-        setDisplayValue(nextValue);
-      },
-    });
-
-    return () => {
-      tween.kill();
-    };
-  }, [isInView, targetValue]);
-
-  return (
-    <span ref={numberRef}>
-      {displayValue}
-      {suffix}
-    </span>
-  );
-}
+// 12-lobed scalloped circle path for clipPath
+const SCALLOP_CLIP_PATH = (() => {
+  const lobes = 12;
+  const d: string[] = [];
+  for (let i = 0; i < lobes; i++) {
+    const a1 = (i * 2 * Math.PI) / lobes;
+    const a2 = ((i + 1) * 2 * Math.PI) / lobes;
+    const amid = (a1 + a2) / 2;
+    const rBase = 38;
+    const rOuter = 48;
+    const x1 = 50 + rBase * Math.cos(a1);
+    const y1 = 50 + rBase * Math.sin(a1);
+    const cx = 50 + rOuter * Math.cos(amid);
+    const cy = 50 + rOuter * Math.sin(amid);
+    const x2 = 50 + rBase * Math.cos(a2);
+    const y2 = 50 + rBase * Math.sin(a2);
+    if (i === 0) d.push(`M ${x1.toFixed(2)} ${y1.toFixed(2)}`);
+    d.push(`Q ${cx.toFixed(2)} ${cy.toFixed(2)} ${x2.toFixed(2)} ${y2.toFixed(2)}`);
+  }
+  d.push("Z");
+  return d.join(" ");
+})();
 
 export default function About() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const shouldReduceMotion = useReducedMotion();
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Section title
-      gsap.from(".about-label", {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Paragraph reveal - stagger lines
-      gsap.from(".about-text-line", {
-        y: 60,
-        opacity: 0,
-        stagger: 0.12,
-        duration: 0.9,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".about-text-container",
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Stats counter animation
-      gsap.from(".stat-item", {
-        y: 50,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".stats-container",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Floating words
-      gsap.from(".floating-word", {
-        opacity: 0,
-        scale: 0.5,
-        stagger: 0.2,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 60%",
-          toggleActions: "play none none reverse",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const scrollToExperience = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById("experience");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
-      ref={sectionRef}
       id="about"
-      className="relative py-32 px-6 md:px-12 lg:px-24 overflow-hidden"
+      className="relative w-full bg-black text-white py-28 md:py-40 px-6 md:px-12 select-none border-b border-black overflow-hidden"
     >
-      {/* Floating words */}
-      <div className="absolute inset-0 pointer-events-none">
-        {floatingWords.map((word, i) => (
-          <motion.span
-            key={i}
-            className="floating-word absolute text-6xl md:text-8xl lg:text-9xl font-black text-white/[0.02] select-none"
-            style={{ left: word.x, top: word.y }}
-            animate={{
-              y: [0, -20, 0],
-              rotate: [-2, 2, -2],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              delay: word.delay,
-              ease: "easeInOut",
-            }}
-          >
-            {word.text}
-          </motion.span>
-        ))}
-      </div>
+      <div className="max-w-[1200px] mx-auto space-y-20">
+        {/* Outlined Pill Label */}
+        <div className="flex items-center justify-between border-b border-neutral-800 pb-4">
+          <span className="px-5 py-1.5 rounded-full border border-white text-xs font-bold uppercase tracking-widest text-white">
+            Motion Profile
+          </span>
+          <span className="text-xs font-extrabold uppercase tracking-widest text-neutral-500">
+            Kunal Singh · lastcookiee
+          </span>
+        </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Label */}
-        <p className="about-label text-xs tracking-[0.4em] text-[#00d4ff]/50 font-mono uppercase mb-4">
-          // ABOUT
-        </p>
-        <h2 className="about-label text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-16">
-          THE EDITOR<span className="text-[#a855f7]">.</span>
-        </h2>
+        {/* Main Content Grid: Bio + Photo in Scallop Mask */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Bio text (lg:col-span-8) */}
+          <div className="lg:col-span-8 space-y-8">
+            <h2 className="text-xs font-black uppercase tracking-widest text-lavender">
+              {"// MOTION GRAPHICS & VISUAL RHYTHM"}
+            </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Text Content */}
-          <div className="about-text-container">
-            <div className="space-y-6">
-              <div className="overflow-hidden">
-                <p className="about-text-line text-lg md:text-xl text-white/60 leading-relaxed">
-                  I&apos;m <span className="text-white font-bold">Kunal Singh</span>, known
-                  online as <span className="text-[#00d4ff]">lastcookiee</span>. A video editor
-                  who doesn&apos;t just cut clips — I craft{" "}
-                  <span className="text-white font-semibold">visual experiences</span>.
-                </p>
-              </div>
+            <div className="text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight text-neutral-200 leading-[1.35]">
+              I&apos;m <span className="text-white font-extrabold">Kunal Singh</span> (aka{" "}
+              <span className="text-lavender font-extrabold">lastcookiee</span>), a Motion Designer
+              &amp; Visual Artist with <span className="text-yellow font-extrabold">4+ years</span> of
+              hands-on craft in After Effects, Illustrator, and Premiere Pro. Currently delivering full-time
+              motion graphics at <span className="text-white font-extrabold underline decoration-yellow decoration-2">NxtWave</span>,
+              I build{" "}
+              <span className="relative inline-block text-black font-extrabold px-3 py-0.5 rounded-xl mx-1">
+                {/* Yellow organic blob sitting behind key phrase */}
+                <span className="absolute inset-0 bg-yellow rounded-xl -rotate-1 scale-105 pointer-events-none -z-0" />
+                <span className="relative z-10">kinetic visual systems</span>
+              </span>{" "}
+              with tight typography, hypnotic pacing, and razor-sharp audio sync.
+            </div>
 
-              <div className="overflow-hidden">
-                <p className="about-text-line text-lg md:text-xl text-white/60 leading-relaxed">
-                  With <span className="text-white font-semibold">3+ years</span> behind the
-                  timeline and <span className="text-white font-semibold">150+ projects</span>{" "}
-                  delivered, I specialize in{" "}
-                  <span className="text-[#a855f7]">beat-synced edits</span>,{" "}
-                  <span className="text-[#00d4ff]">kinetic typography</span>, and{" "}
-                  <span className="text-white">cinematic storytelling</span>.
-                </p>
-              </div>
-
-              <div className="overflow-hidden">
-                <p className="about-text-line text-lg md:text-xl text-white/60 leading-relaxed">
-                  From freelance projects to editing for{" "}
-                  <span className="text-white font-bold">9MM Esports</span>, every frame I
-                  touch is designed to make an impact. My tools of choice:{" "}
-                  <span className="text-[#00d4ff]">After Effects</span> &{" "}
-                  <span className="text-[#a855f7]">Premiere Pro</span> with{" "}
-                  <span className="text-[#31A8FF]">Adobe Photoshop</span>.
-                </p>
-              </div>
-
-              <div className="overflow-hidden">
-                <p className="about-text-line text-lg md:text-xl text-white/40 leading-relaxed italic">
-                  &ldquo;Every frame has a purpose.&rdquo;
-                </p>
-              </div>
+            <div className="pt-2">
+              <a
+                href="#experience"
+                onClick={scrollToExperience}
+                className="inline-flex items-center gap-2 text-base md:text-lg font-bold text-white underline underline-offset-8 decoration-yellow decoration-2 hover:text-yellow transition-colors"
+              >
+                <span>View career journey at NxtWave &amp; beyond</span>
+                <span className="text-xl">→</span>
+              </a>
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="stats-container flex flex-col justify-center">
-            <div className="grid grid-cols-1 gap-8">
-              {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="stat-item group flex items-baseline gap-6 border-b border-white/5 pb-6"
-                >
-                  <span className="text-5xl md:text-7xl font-black bg-gradient-to-r from-[#00d4ff] to-[#a855f7] bg-clip-text text-transparent">
-                    <AnimatedStatNumber value={stat.number} />
-                  </span>
-                  <span className="text-white/40 text-sm md:text-base tracking-[0.1em] uppercase">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Tools */}
-            <div className="mt-12">
-              <p className="text-xs tracking-[0.3em] text-white/20 uppercase mb-4">
-                Primary Tools
-              </p>
-              <div className="flex flex-wrap gap-4">
-                {["After Effects", "Premiere Pro", "Adobe Photoshop"].map((tool) => (
-                  <span
-                    key={tool}
-                    className="text-xs tracking-widest uppercase px-4 py-2 border border-white/10 text-white/50 hover:border-[#00d4ff]/30 hover:text-[#00d4ff]/70 transition-all duration-300"
-                  >
-                    {tool}
-                  </span>
-                ))}
+          {/* Photo inside slowly rotating scalloped-circle mask (lg:col-span-4) */}
+          <div className="lg:col-span-4 flex flex-col items-center justify-center">
+            <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80">
+              {/* Outer decorative ring */}
+              <div className="absolute -inset-3 pointer-events-none opacity-40">
+                <Shape
+                  type="starburst"
+                  fill="lavender"
+                  size="100%"
+                  spin={true}
+                  spinDuration={35}
+                  pop={false}
+                />
               </div>
+
+              {/* Scalloped clip path container */}
+              <svg
+                className="w-full h-full overflow-visible drop-shadow-2xl"
+                viewBox="0 0 100 100"
+              >
+                <defs>
+                  <clipPath id="scallopPhotoClip">
+                    <motion.path
+                      d={SCALLOP_CLIP_PATH}
+                      animate={
+                        shouldReduceMotion
+                          ? undefined
+                          : {
+                              rotate: [0, 360],
+                            }
+                      }
+                      transition={{
+                        duration: 28,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      style={{ transformOrigin: "50px 50px" }}
+                    />
+                  </clipPath>
+                </defs>
+                <image
+                  href="/images/me.jpeg"
+                  width="100"
+                  height="100"
+                  preserveAspectRatio="xMidYMid slice"
+                  clipPath="url(#scallopPhotoClip)"
+                />
+              </svg>
             </div>
+            <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mt-6">
+              Kunal Singh · Motion Graphics Designer
+            </p>
+          </div>
+        </div>
+
+        {/* Three Counters (years: 4+, videos: 300+, clients: 50+) */}
+        <div className="pt-16 border-t border-neutral-800 grid grid-cols-1 sm:grid-cols-3 gap-10 text-center sm:text-left">
+          {/* Counter 1: Years */}
+          <div className="space-y-2 border-b sm:border-b-0 sm:border-r border-neutral-800 pb-8 sm:pb-0 sm:pr-8">
+            <div className="text-5xl sm:text-6xl md:text-7xl font-black text-white tracking-tighter">
+              <Counter value={4} suffix="+" />
+            </div>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-400">
+              Years in Motion &amp; Animation
+            </p>
+          </div>
+
+          {/* Counter 2: Videos / Projects */}
+          <div className="space-y-2 border-b sm:border-b-0 sm:border-r border-neutral-800 pb-8 sm:pb-0 sm:pr-8">
+            <div className="text-5xl sm:text-6xl md:text-7xl font-black text-yellow tracking-tighter">
+              <Counter value={300} suffix="+" />
+            </div>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-400">
+              Videos &amp; Motion Assets Delivered
+            </p>
+          </div>
+
+          {/* Counter 3: Clients */}
+          <div className="space-y-2">
+            <div className="text-5xl sm:text-6xl md:text-7xl font-black text-lavender tracking-tighter">
+              <Counter value={50} suffix="+" />
+            </div>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-neutral-400">
+              Happy Clients &amp; Brands Worldwide
+            </p>
           </div>
         </div>
       </div>

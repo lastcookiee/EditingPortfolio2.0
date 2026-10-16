@@ -1,181 +1,175 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Shape from "@/components/Shape";
 
-gsap.registerPlugin(ScrollTrigger);
+interface JourneyItem {
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  description: string;
+  tags: string[];
+}
 
-const experiences = [
+const JOURNEY_DATA: JourneyItem[] = [
   {
-    period: "Nov 2025 — Present",
-    role: "Visual Media Designer",
-    company: "Sheryians Coding School",
-    location: "Bhopal, Madhya Pradesh, India · On-site",
+    id: "nxtwave",
+    company: "NxtWave Disruptive Technologies Pvt. Ltd.",
+    role: "Video Editor II / Motion Graphics Designer",
+    period: "Aug 2026 — Present",
+    location: "Hyderabad, India · Full-time",
     description:
-      "Working as a Visual Media Designer, contributing to video editing and motion design for educational and promotional content. Editing short-form and long-form videos for social media platforms. Creating motion graphics, transitions, and visual effects to enhance storytelling.",
-    highlights: ["Video Editing & Motion Design", "Social Media Content", "Motion Graphics & VFX", "Adobe Photoshop"],
-    current: true,
+      "Creating full-time motion graphics and video content, taking assets from concept through storyboard to final delivery. Applying kinetic typography, graphic animation, and deliberate pacing to produce polished, brand-consistent visual content while collaborating with stakeholders to translate briefs into clear narratives.",
+    tags: [
+      "Motion Graphics",
+      "Kinetic Typography",
+      "After Effects",
+      "Adobe Illustrator",
+      "Visual Pacing",
+      "Brand Narrative",
+    ],
   },
   {
-    period: "2020 — Present",
-    role: "Freelance Video Editor",
-    company: "Independent",
-    location: "Remote",
+    id: "9mm",
+    company: "9MM Esports Society",
+    role: "Content & Motion Editor",
+    period: "Oct 2023 — 2026",
+    location: "New Delhi, India",
     description:
-      "Working with creators, brands, and esports organizations worldwide. Specializing in gaming montages, brand promos, and cinematic edits with a focus on beat-synced storytelling.",
-    highlights: ["150+ projects delivered", "International clients", "Full creative direction"],
-    current: false,
+      "Produced promotional teasers, animated highlight reels, and event intros for gaming events and college circuits. Owned the complete editing and motion workflow for LAN tournaments, syncing gameplay, overlays, and custom audio pacing.",
+    tags: [
+      "Event Intros",
+      "LAN Aftermovies",
+      "Gameplay Overlays",
+      "Audio Syncing",
+      "Community Content",
+    ],
   },
   {
-    period: "2022 — 2023",
-    role: "Video Editor",
-    company: "9MM Esports",
-    location: "Remote",
+    id: "freelance",
+    company: "Freelance Motion Graphics Artist",
+    role: "Motion Designer & Creative Editor",
+    period: "Jan 2020 — Present",
+    location: "Online Clients & Creators · Remote",
     description:
-      "Lead editor for social media content and tournament highlight reels. Created high-energy fragmovies and promo content that drove engagement and brand identity for the organization.",
-    highlights: ["Team content strategy", "Tournament coverage", "Brand identity"],
-    current: false,
+      "Delivered 100+ videos across social media, gaming montages, brand promos, and event highlights. Specialised in dynamic transitions, smooth cuts, and typography-led animations that helped digital creators scale engagement and reach.",
+    tags: [
+      "Dynamic Transitions",
+      "Kinetic Sequences",
+      "Color Grading",
+      "Audio-Synced Effects",
+      "Client Management",
+    ],
   },
 ];
 
 export default function Experience() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const [expandedId, setExpandedId] = useState<string | null>("nxtwave");
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".experience-title", {
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Timeline line animation
-      gsap.from(".timeline-line-animated", {
-        scaleY: 0,
-        transformOrigin: "top",
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".timeline-container",
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Timeline items
-      gsap.from(".timeline-item", {
-        x: -60,
-        opacity: 0,
-        stagger: 0.3,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".timeline-container",
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      // Timeline dots
-      gsap.from(".timeline-dot", {
-        scale: 0,
-        stagger: 0.3,
-        duration: 0.5,
-        ease: "back.out(2)",
-        scrollTrigger: {
-          trigger: ".timeline-container",
-          start: "top 70%",
-          toggleActions: "play none none reverse",
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  const toggleItem = (id: string) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
 
   return (
     <section
-      ref={sectionRef}
       id="experience"
-      className="relative py-20 md:py-24 px-6 md:px-12 lg:px-24"
+      className="relative w-full bg-white text-black py-28 md:py-40 px-6 md:px-12 select-none border-b border-black overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <p className="experience-title text-xs tracking-[0.4em] text-[#a855f7]/50 font-mono uppercase mb-4">
-          // EXPERIENCE
-        </p>
-        <h2 className="experience-title text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter mb-12 md:mb-14">
-          THE JOURNEY<span className="text-[#a855f7]">.</span>
-        </h2>
-
-        {/* Timeline */}
-        <div className="timeline-container relative">
-          {/* Vertical line */}
-          <div className="absolute left-0 md:left-8 top-0 bottom-0 w-[2px]">
-            <div className="timeline-line-animated w-full h-full timeline-line" />
+      <div className="max-w-[1200px] mx-auto space-y-16">
+        {/* Top Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 border-b-2 border-black pb-8">
+          <div>
+            <span className="px-5 py-1.5 rounded-full border border-black text-xs font-bold uppercase tracking-widest text-black mb-4 inline-block">
+              Experience &amp; Career
+            </span>
+            <h2 className="text-5xl sm:text-7xl md:text-8xl font-black uppercase tracking-tighter text-black leading-none">
+              THE JOURNEY
+            </h2>
           </div>
+          <div className="flex items-center gap-3">
+            <Shape type="flower" fill="yellow" size={28} spin spinDuration={18} />
+            <span className="text-xs font-extrabold uppercase tracking-widest text-neutral-500">
+              4+ Years in Motion
+            </span>
+          </div>
+        </div>
 
-          {/* Timeline items */}
-          <div className="space-y-16 pl-8 md:pl-20">
-            {experiences.map((exp, i) => (
-              <div key={i} className="timeline-item relative">
-                {/* Dot */}
-                <div className="timeline-dot absolute -left-8 md:-left-20 top-2 w-4 h-4 rounded-full bg-[#050505] border-2 border-[#00d4ff] z-10">
-                  <div className="absolute inset-0 rounded-full bg-[#00d4ff]/20 animate-ping" />
-                </div>
+        {/* Accordion Rows */}
+        <div className="divide-y-2 divide-black border-y-2 border-black">
+          {JOURNEY_DATA.map((item) => {
+            const isExpanded = expandedId === item.id;
 
-                {/* Connector line */}
-                <div className="absolute -left-4 md:-left-12 top-[14px] w-4 md:w-12 h-[1px] bg-gradient-to-r from-[#00d4ff]/50 to-transparent" />
+            return (
+              <div key={item.id} className="transition-colors">
+                {/* Header Row */}
+                <button
+                  onClick={() => toggleItem(item.id)}
+                  className="w-full py-8 md:py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 text-left group"
+                  aria-expanded={isExpanded}
+                >
+                  {/* Left: Date pill + Role & Company */}
+                  <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                    <span className="px-4 py-1.5 rounded-full border border-black text-xs font-black uppercase tracking-wider bg-neutral-100 text-black self-start md:self-auto shrink-0">
+                      {item.period}
+                    </span>
 
-                {/* Content */}
-                <div className="group">
-                  <div className="flex items-center gap-3 mb-2">
-                    <p className="text-xs tracking-[0.3em] text-[#00d4ff]/60 font-mono uppercase">
-                      {exp.period}
-                    </p>
-                    {exp.current && (
-                      <span className="text-[9px] tracking-[0.15em] uppercase px-2 py-0.5 bg-[#00d4ff]/10 border border-[#00d4ff]/30 text-[#00d4ff] animate-pulse">
-                        CURRENT
-                      </span>
-                    )}
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight group-hover:text-neutral-700 transition-colors">
+                        {item.role}
+                      </h3>
+                      <p className="text-base sm:text-lg font-medium text-neutral-500 mt-0.5">
+                        {item.company} · {item.location}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-1">
-                    {exp.role}
-                  </h3>
-                  <p className="text-sm text-[#a855f7]/70 tracking-[0.1em] uppercase mb-1">
-                    {exp.company}
-                  </p>
-                  {exp.location && (
-                    <p className="text-xs text-white/20 tracking-[0.05em] mb-4">
-                      {exp.location}
-                    </p>
+
+                  {/* Right: Expand indicator */}
+                  <div className="flex items-center gap-4 self-end md:self-auto shrink-0">
+                    <div
+                      className={`w-10 h-10 rounded-full border border-black flex items-center justify-center font-bold text-lg transition-transform duration-300 ${
+                        isExpanded ? "rotate-45 bg-black text-white" : "bg-white text-black"
+                      }`}
+                    >
+                      +
+                    </div>
+                  </div>
+                </button>
+
+                {/* Collapsible Content */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="pb-10 pt-2 space-y-6 max-w-3xl">
+                        <p className="text-base sm:text-lg text-neutral-700 leading-relaxed font-normal">
+                          {item.description}
+                        </p>
+
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {item.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border border-black bg-yellow text-black"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
                   )}
-                  <p className="text-white/40 text-sm leading-relaxed max-w-xl mb-4">
-                    {exp.description}
-                  </p>
-
-                  {/* Highlights */}
-                  <div className="flex flex-wrap gap-2">
-                    {exp.highlights.map((h) => (
-                      <span
-                        key={h}
-                        className="text-[10px] tracking-[0.1em] uppercase px-3 py-1 border border-white/5 text-white/30 hover:border-[#00d4ff]/20 hover:text-[#00d4ff]/50 transition-all duration-300"
-                      >
-                        {h}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                </AnimatePresence>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

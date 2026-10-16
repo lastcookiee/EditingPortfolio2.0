@@ -1,31 +1,66 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Bowlby_One_SC } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
+  weight: ["500", "600", "700", "900"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bowlbyOneSC = Bowlby_One_SC({
+  variable: "--font-bowlby",
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "LASTCOOKIEE — Kunal Singh | Video Editor & Motion Designer",
+  metadataBase: new URL("https://editing-portfolio2-0.vercel.app"),
+  title: "Kunal Singh (lastcookiee) — Motion Designer & Visual Rhythm Artist",
   description:
-    "I don't edit videos. I design experiences. 5+ years crafting cinematic edits, beat-synced montages, and visual storytelling.",
+    "Portfolio of Kunal Singh (lastcookiee) — 4+ years crafting high-impact motion graphics, kinetic typography systems, visual rhythm, and Gen-AI visual stories. Currently at NxtWave.",
   keywords: [
-    "video editor",
-    "motion designer",
-    "after effects",
-    "premiere pro",
-    "gaming edits",
-    "cinematic edits",
+    "Kunal Singh",
     "lastcookiee",
-    "kunal singh",
+    "Motion Designer",
+    "Motion Graphics",
+    "Kinetic Typography",
+    "Visual Rhythm",
+    "After Effects",
+    "Adobe Illustrator",
+    "Premiere Pro",
+    "NxtWave",
   ],
+  authors: [{ name: "Kunal Singh (lastcookiee)" }],
+  openGraph: {
+    title: "Kunal Singh (lastcookiee) — Motion Designer & Visual Rhythm Artist",
+    description:
+      "4+ years crafting high-impact motion graphics, kinetic typography systems, and visual stories.",
+    url: "https://editing-portfolio2-0.vercel.app",
+    siteName: "Kunal Singh Portfolio",
+    images: [
+      {
+        url: "/images/me.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Kunal Singh (lastcookiee)",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kunal Singh (lastcookiee) — Motion Designer & Visual Rhythm Artist",
+    description:
+      "Motion graphics designer specializing in kinetic typography systems, visual rhythm, and Gen-AI storytelling.",
+    images: ["/images/me.jpeg"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -34,9 +69,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#050505] text-white`}
+        className={`${poppins.variable} ${bowlbyOneSC.variable} font-sans antialiased bg-black text-white selection:bg-yellow selection:text-black`}
+        style={{ fontFamily: "var(--font-poppins), sans-serif" }}
       >
         {children}
       </body>
